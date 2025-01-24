@@ -8,11 +8,11 @@ import jakarta.validation.constraints.NotNull;
 public class MeasurementDTO {
     @Min(value = -100, message = "Value should be greater than -100")
     @Max(value = 100, message = "Value should be less than 100")
-    @NotNull
+    @NotNull(message = "Value should not be null")
     private float value;
-    @NotNull
+    @NotNull(message = "Raining should not be null")
     private boolean raining;
-    @NotNull
+    @NotNull(message = "Sensor should not be null")
     private SensorDTO sensor;
 
 
@@ -21,6 +21,10 @@ public class MeasurementDTO {
         this.value = value;
         this.raining = raining;
         this.sensor = sensor;
+    }
+
+    public MeasurementDTO() {
+
     }
 
     public float getValue() {

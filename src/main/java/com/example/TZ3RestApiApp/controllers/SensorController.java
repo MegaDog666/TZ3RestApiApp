@@ -3,6 +3,7 @@ package com.example.TZ3RestApiApp.controllers;
 import com.example.TZ3RestApiApp.dto.SensorDTO;
 import com.example.TZ3RestApiApp.models.Sensor;
 import com.example.TZ3RestApiApp.services.SensorService;
+import com.example.TZ3RestApiApp.utils.SensorDuplicateException;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class SensorController {
                         .append(";");
             }
 
-            throw new IllegalArgumentException(errorMsg.toString());
+            throw new SensorDuplicateException(errorMsg.toString());
         }
 
         sensorService.save(convertToSensor(sensorDTO));
